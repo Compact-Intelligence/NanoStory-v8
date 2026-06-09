@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+cache_v8/
+train_v8.log
+*.bin
