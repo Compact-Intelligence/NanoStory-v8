@@ -38,14 +38,18 @@ pip install -r requirements.txt
 
 ## Dataset
 
-NanoStory v8 trains on synthetic children's stories. You need a JSONL file where each line has a `"story"` field:
+NanoStory v8 trains on synthetic children's stories. The training dataset is included in this repo at `data/stories_frozen.jsonl` — 84,425 stories (~31MB) used for the v8 retraining run.
+
+Each line is a JSON object with a `"story"` field:
 
 ```jsonl
 {"story": "once upon a time a little cat sat on the wall..."}
 {"story": "ben and lily went to the park and played..."}
 ```
 
-A curated dataset is available at [Compact-Intelligence/NanoStory-Dataset](https://github.com/Compact-Intelligence/NanoStory-Dataset).
+The BPE tokenizer used for training is also included at `data/bpe_tokenizer.json`.
+
+If you want to use your own dataset, edit the `STORIES_PATH` in `prepare_data_v8.py` to point to your JSONL file.
 
 ## Training
 
@@ -127,8 +131,11 @@ A pre-trained checkpoint is included at `checkpoints/best_model.pt` trained on ~
 ├── train_v8.py           # Training loop with evaluation & sampling
 ├── requirements.txt      # Python dependencies
 ├── vocab_v3.json         # Reference vocabulary
+├── data/
+│   ├── stories_frozen.jsonl  # Training dataset (84K stories, via git LFS)
+│   └── bpe_tokenizer.json    # BPE tokenizer model
 ├── checkpoints/
-│   └── best_model.pt     # Pre-trained model checkpoint
+│   └── best_model.pt         # Pre-trained model checkpoint
 └── README.md
 ```
 
